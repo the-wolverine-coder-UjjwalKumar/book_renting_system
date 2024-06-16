@@ -1,4 +1,3 @@
-import re
 from datetime import datetime
 
 from assignment.book_renting_system.Book import Book, Textbook, Fiction
@@ -13,10 +12,10 @@ class Record:
         self.members: [Member] = list()
 
     def validate_book_id(self, book_id):
-        return re.match(r'^B\d+$', book_id) is not None
+        return book_id.startswith('B') and book_id[1:].isdigit()
 
     def validate_member_id(self, member_id):
-        return re.match(r'^M\d+$', member_id) is not None
+        return member_id.startswith('M') and member_id[1:].isdigit()
 
     def validate_state(self, state):
         return state == 'R' or state.isdigit()
